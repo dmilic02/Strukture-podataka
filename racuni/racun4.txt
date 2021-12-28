@@ -1,0 +1,4 @@
+01-01-2022
+banana 8 1.99
+vatromet 5 99.99
+petarda 20 8.99
