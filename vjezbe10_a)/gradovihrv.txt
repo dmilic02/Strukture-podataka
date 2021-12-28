@@ -1,0 +1,4 @@
+split 100000
+makarska 15000
+zagreb 1000000
+zadar 80000
