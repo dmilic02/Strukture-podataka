@@ -64,7 +64,7 @@ int main(void)
     }
     printf("Minimalan broj stanovnika: ");
     scanf("%d", &broj);
-    printf("Gradovi te drzave (%s) sa vise od %d stanovnika:\n", p->ime, broj);
+    printf("\nGradovi te drzave (%s) sa vise od %d stanovnika:\n", p->ime, broj);
     traziGrad(p->grad, broj);
 
     return 0;
@@ -156,10 +156,17 @@ pok unosGrada(pok p, char* ime, int stan)
         q->d = NULL;
         return q;
     }
-    if(stan >= p->stanovnici)
+    if(stan > p->stanovnici)
         p->d = unosGrada(p->d, ime, stan);
     if(stan < p->stanovnici)
         p->l = unosGrada(p->l, ime, stan);
+    if(stan == p->stanovnici)
+    {
+        if(strcmp(ime, p->ime) >= 0)
+            p->d = unosGrada(p->d, ime, stan);
+        else
+            p->l = unosGrada(p->l, ime, stan);
+    }
 
     return p;
 }
