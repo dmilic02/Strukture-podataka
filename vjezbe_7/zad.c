@@ -26,7 +26,7 @@ poz cd(char* ime, poz p);
 int izlistajDirektorije(poz p);
 int pushStog(poz p, pos s);
 pos popStog(pos p);
-int brisiSve(poz p, pos s);
+int brisiSve(poz p);
 
 int main(void)
 {
@@ -54,6 +54,7 @@ int main(void)
         scanf("%s", naredba);
         if(strcmp(naredba, "exit") == 0)
         {
+            brisiSve(head.child);
             break;
         }
         else if(strcmp(naredba, "md") == 0)
@@ -204,30 +205,16 @@ pos popStog(pos p)
     return prev;
 }
 
-int brisiSve(poz p, pos s)
+int brisiSve(poz p)
 {
-    pos q = NULL;
-    poz t = NULL;
-
-    while(s != NULL)
-    {
-        q = s;
-        s = s->next;
-        free(q);
-    }
-
-    while(p != NULL)
-    {
-        while(p->sibling != NULL)
-        {
-            t = p;
-            p = p->sibling;
-            free(t);
-        }
-        p = p->child;
-    }
+    if(p == NULL)
+        return 0;
+    brisiSve(p->sibling);
+    brisiSve(p->child);
+    free(p);
     return 0;
 }
+
 
 
 
